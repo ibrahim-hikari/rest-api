@@ -13,14 +13,14 @@ router.param('model', modelFinder.loadFile);
 router.get('/', test);
 
 function test(req, res) {
-    res.status(200).send('hello Naseem')
+    res.status(200).send('hello Narnia')
 }
 
 router.get('/ourapi/v1/:model', findAll);
-router.get('/ourapi/v1/:model:_id', findById);
+router.get('/ourapi/v1/:model/:_id', findById);
 router.post('/ourapi/v1/:model', createOne);
-router.put('/ourapi/v1/:model:_id', updateOne);
-router.delete('/ourapi/v1/:model:_id', deleteOne);
+router.put('/ourapi/v1/:model/:_id', updateOne);
+router.delete('/ourapi/v1/:model/:_id', deleteOne);
 
 function findAll(req, res, next) {
     req.model.read()
@@ -32,6 +32,7 @@ function findAll(req, res, next) {
 
 function findById(req, res, next) {
     let _id = req.params._id;
+    console.log('_ID', _id);
     req.model.read(_id)
         .then(data => {
             res.json(data)
