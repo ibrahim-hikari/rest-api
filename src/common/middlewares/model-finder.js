@@ -8,7 +8,7 @@ const folder = `${__dirname}/../models`
 
 const loadFile = (req, res, next) => {
     let modelName = req.params.model.replace(/[^a-z0-9-_]/gi, '');
-    const Model = require(`../models/${modelName}-model.js`);
+    const Model = require(`${folder}/${modelName}-model.js`);
     req.model = new Model();
     next();
 }

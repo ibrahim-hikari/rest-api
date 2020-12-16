@@ -4,7 +4,7 @@ const express = require('express');
 const methodOverride = require('method-override');
 const router = express.Router();
 
-const modelFinder = require('./middleware/model-finder.js')
+const modelFinder = require('./common/middlewares/model-finder')
 
 // router.use(methodOverride(middleware));
 
@@ -16,7 +16,7 @@ function test(req, res) {
     res.status(200).send('hello Narnia')
 }
 
-router.get('/ourapi/v1/:model', findAll);
+router.get('/ourapi/v1/:model', [findAll]);
 router.get('/ourapi/v1/:model/:_id', findById);
 router.post('/ourapi/v1/:model', createOne);
 router.put('/ourapi/v1/:model/:_id', updateOne);
