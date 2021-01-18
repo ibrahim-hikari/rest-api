@@ -5,7 +5,9 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 
-const apiRouter = require('./route.js')
+const AuthorizationRouter = require('./authorization/routes.config');
+const UsersRouter = require('./users/routes.config');
+const apiRouter = require('./route.js');
 
 const app = express();
 
@@ -14,6 +16,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(apiRouter);
+AuthorizationRouter.routesConfig(app);
+UsersRouter.routesConfig(app);
 app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 
